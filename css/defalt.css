@@ -1,0 +1,20 @@
+#header-list{
+    display: flex;
+}
+
+#header-list div {
+    border: 1px solid black;
+    min-width: 200px;
+    min-height: 150px;
+    margin: 0 auto;
+    display: wrap;
+    text-align: center;
+}
+
+#header-list div .title {
+    font-size: larger;
+}
+
+#header-list div .description {
+    font-size: xx-large;
+}
