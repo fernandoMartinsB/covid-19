@@ -1,7 +1,6 @@
 class HttpService {
     
     static get(url, cb) {
-        let result = null;
         let xhr = new XMLHttpRequest();
         xhr.open('GET', url);
         xhr.onreadystatechange = () => {
