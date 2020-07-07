@@ -25,12 +25,26 @@ HttpService.get('https://xx9p7hp1p7.execute-api.us-east-1.amazonaws.com/prod/Por
 
 HttpService.get('https://xx9p7hp1p7.execute-api.us-east-1.amazonaws.com/prod/PortalRegiaoUf', (response) => {
    if(response) {
-      console.log(response);
       let list = document.createElement('ul');
-      Object.keys(response).forEach((element, index) => {
+      Object.keys(response).forEach((element) => {
          if(!Array.isArray(response[element])) {
             let region = document.createElement('li');
+            let statesList = document.createElement('ul');
             region.innerHTML = element;
+            Object.keys(response[element]).forEach(elementItem => {
+               let state = document.createElement('li');
+               state.innerHTML = elementItem;
+               let stateUl = document.createElement('ul');
+               let stateTotal = document.createElement('li');
+               stateTotal.innerHTML = `Casos Acumulados : ${this.formatNumber(response[element][elementItem].semana[response[element][elementItem].semana.length -1].casosAcumulado)}`;
+               let stateDeath = document.createElement('li');
+               stateDeath.innerHTML = `Obitos Acumulados : ${this.formatNumber(response[element][elementItem].semana[response[element][elementItem].semana.length -1].obitosAcumulado)}`;
+               stateUl.appendChild(stateTotal);
+               stateUl.appendChild(stateDeath);
+               state.appendChild(stateUl);
+               statesList.appendChild(state);
+            });
+            region.appendChild(statesList);
             list.appendChild(region);
          }
       });
